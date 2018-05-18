@@ -1,0 +1,28 @@
+truncate table ${DBTO}.impBrands;
+insert into ${DBTO}.impBrands
+select * from ${DBFROM}.impBrands
+;
+truncate table ${DBTO}.impCats;
+insert into ${DBTO}.impCats
+select * from ${DBFROM}.impCats
+;
+truncate table ${DBTO}.impCaTxt;
+insert into ${DBTO}.impCaTxt
+select * from ${DBFROM}.impCaTxt
+;
+truncate table ${DBTO}.impItemPrice;
+insert into ${DBTO}.impItemPrice
+select * from ${DBFROM}.impItemPrice
+;
+truncate table ${DBTO}.impItems;
+insert into ${DBTO}.impItems
+select * from ${DBFROM}.impItems
+;
+truncate table ${DBTO}.impItemStock;
+insert into ${DBTO}.impItemStock
+select * from ${DBFROM}.impItemStock
+;
+truncate table ${DBTO}.impItemTxt;
+insert into ${DBTO}.impItemTxt
+select * from ${DBFROM}.impItemTxt
+;

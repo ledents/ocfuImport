@@ -6,7 +6,7 @@ var con = mysql.createConnection(dbSettings);
 
 const BATCH_SIZE = 512;
 
-const DB_SHOP       = 'shopdb2';
+const DB_SHOP       = dbSettings.dbname || 'shopdb';
 const TBL_BRANDS    = DB_SHOP+'.impBrands';
 const TBL_CATS      = DB_SHOP+'.impCats';
 const TBL_CATXT     = DB_SHOP+'.impCaTxt';
@@ -299,12 +299,16 @@ module.exports = dblib = {
                 });
             }, 
     query: query,
-    runSql: function (fsql) {
+    runSql: function (fsql, ctx) {
 		var sqls = fs.readFileSync(fsql).toString().split(';'), sql;
 	    	for (let i=0; i<sqls.length; i++) {
 			sql = sqls[i].trim();
 			if (sql.length) {
-				sql = eval(['`',sql.replace(/`/g, '\\`'),'`'].join(''));
+				if (typeof ctx == 'object') with (ctx) {
+					sql = eval(['`',sql.replace(/`/g, '\\`'),'`'].join(''));
+				} else {
+					sql = eval(['`',sql.replace(/`/g, '\\`'),'`'].join(''));
+				}
 				((sql) => {
 				query(sql).catch((err) => {
 				   console.log('SQL ERROR: ', err, '\n While executing =>',sql,'<');
