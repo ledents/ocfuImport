@@ -1,0 +1,2 @@
+cd catalog
+tar -cvzf ../package.tar.gz *
