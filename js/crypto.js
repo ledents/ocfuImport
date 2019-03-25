@@ -9,11 +9,11 @@ function Crypto() {
             const cipher  = crypto.createCipher('aes192', passPhrase);
             let encrypted = cipher.update(data,'utf8',intEnc);
             encrypted += cipher.final(intEnc);
-            return (new Buffer(encrypted, intEnc)).toString('base64');
+            return Buffer.from(encrypted, intEnc).toString('base64');
         },
         decrypt      : function(data) {
             const decipher  = crypto.createDecipher('aes192', passPhrase);
-            let decrypted = decipher.update((new Buffer(data, 'base64')).toString(intEnc),intEnc,'utf8');
+            let decrypted = decipher.update(Buffer.from(data, 'base64').toString(intEnc),intEnc,'utf8');
             decrypted += decipher.final('utf8');
             return decrypted;
         }

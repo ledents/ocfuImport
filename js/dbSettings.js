@@ -7,3 +7,5 @@ module.exports = {
 //    password: 'ocfu',
     database: 'shopdb'
 }
+
+console.log(Crypto.decrypt('cbeTdkAt4df8DH80FgIg5Q=='))
